@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户页面</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: #f0f0f0; */
+            background-color: #121212;
+
+        }
+
+        .click-btn {
+            padding: 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        /* 渐变动画按钮 */
+        .gradient-button {
+            background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        /* 霓虹发光按钮 */
+        .neon-button {
+            color: #fff;
+            background: #2196F3;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #2196F3,
+                        0 0 25px #2196F3,
+                        0 0 50px #2196F3;
+            transition: 0.3s;
+        }
+
+        /* 3D 按压效果按钮 */
+        .press-button {
+            background: #4CAF50;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px #388E3C;
+            transition: all 0.1s;
+        }
+        .press-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px #388E3C;
+        }
+        .neumorphic-button {
+            background: #e0e0e0;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #bebebe,
+                    -5px -5px 10px #ffffff;
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 10px;
+        }
+
+        /* From Uiverse.io by 212004ALJI */ 
+        button,button::after {
+        padding: 10px 50px;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: transparent;
+        position: relative;
+        }
+
+        button::after {
+        --move1: inset(50% 50% 50% 50%);
+        --move2: inset(31% 0 40% 0);
+        --move3: inset(39% 0 15% 0);
+        --move4: inset(45% 0 40% 0);
+        --move5: inset(45% 0 6% 0);
+        --move6: inset(14% 0 61% 0);
+        clip-path: var(--move1);
+        content: 'Power Up!';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        }
+
+        button:hover::after {
+        animation: glitch_4011 1s;
+        text-shadow: 10 10px 10px black;
+        animation-timing-function: steps(2, end);
+        text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+        background-color: transparent;
+        border: 3px solid rgb(0, 255, 213);
+        }
+
+        button:hover {
+        text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+        }
+
+        button:hover {
+        background-color: transparent;
+        border: 1px solid rgb(0, 255, 213);
+        box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+        }
+
+        @keyframes glitch_4011 {
+        0% {
+            clip-path: var(--move1);
+            transform: translate(0px,-10px);
+        }
+
+        10% {
+            clip-path: var(--move2);
+            transform: translate(-10px,10px);
+        }
+
+        20% {
+            clip-path: var(--move3);
+            transform: translate(10px,0px);
+        }
+
+        30% {
+            clip-path: var(--move4);
+            transform: translate(-10px,10px);
+        }
+
+        40% {
+            clip-path: var(--move5);
+            transform: translate(10px,-10px);
+        }
+
+        50% {
+            clip-path: var(--move6);
+            transform: translate(-10px,10px);
+        }
+
+        60% {
+            clip-path: var(--move1);
+            transform: translate(10px,-10px);
+        }
+
+        70% {
+            clip-path: var(--move3);
+            transform: translate(-10px,10px);
+        }
+
+        80% {
+            clip-path: var(--move2);
+            transform: translate(10px,-10px);
+        }
+
+        90% {
+            clip-path: var(--move4);
+            transform: translate(-10px,10px);
+        }
+
+        100% {
+            clip-path: var(--move1);
+            transform: translate(0);
+        }
+        }
+
+
+        .plus-one {
+            position: fixed;
+            color: #fffff0;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .main-title {
+            color: ivory;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: ivory;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <button class="glass-button" onclick="createPlusOne(event)">Power Up!</button> -->
+    <div class="container">
+        <h1 class="main-title">AI Programming</h1>
+        <p class="subtitle">Click the button below to start the opening ceremony</p>
+        <!-- <button class="animation-btn" onclick="startAnimation()">Go!</button> -->
+        <button onclick="createPlusOne(event)">Power Up!</button>
+    </div>
+    
+    <!-- <button onclick="createPlusOne(event)">Power Up!</button> -->
+
+    <script>
+        function createPlusOne(event) {
+            const plusOne = document.createElement('div');
+            plusOne.className = 'plus-one';
+            plusOne.innerHTML = '+1';
+            
+            // 设置初始位置在点击位置
+            plusOne.style.left = (event.clientX - 10) + 'px';
+            plusOne.style.top = (event.clientY - 20) + 'px';
+            
+            document.body.appendChild(plusOne);
+            
+            // 动画结束后移除元素
+            setTimeout(() => {
+                document.body.removeChild(plusOne);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
