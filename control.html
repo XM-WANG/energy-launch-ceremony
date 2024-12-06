@@ -212,11 +212,12 @@
             }
 
             .progress-bar {
-                width: 100%;
+                width: 60%;
                 height: 30px;
                 background-color: #333;
                 border-radius: 15px;
                 overflow: hidden;
+                margin: 0 auto;
             }
 
             .progress {
@@ -224,6 +225,20 @@
                 height: 100%;
                 background-color: #4CAF50;
                 transition: width 0.05s;
+            }
+            .rocket {
+                position: absolute;
+                bottom: -50px; /* 从页面底部开始 */
+                font-size: 50px; /* 火箭图标大小 */
+                animation: fly 2s linear forwards; /* 动画效果 */
+            }
+            @keyframes fly {
+                0% {
+                    transform: translateY(0); /* 起始位置 */
+                }
+                100% {
+                    transform: translateY(-100vh); /* 向上滑出 */
+                }
             }
         </style>
     </head>
@@ -306,6 +321,24 @@
                     requestAnimationFrame(animate);
                 } else {
                     // 动画结束
+                    const numRockets = 100; // 火箭数量
+                    const body = document.body;
+
+                    for (let i = 0; i < numRockets; i++) {
+                        const rocket = document.createElement('div');
+                        rocket.className = 'rocket';
+                        rocket.innerText = '🚀'; // 火箭图标
+                        const size = Math.random() * 100 + 30; // 随机大小范围（30px到80px）
+                        rocket.style.fontSize = size + 'px'; // 设置火箭大小
+                        rocket.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+                        rocket.style.animationDelay = Math.random() * 1 + 's'; // 随机延迟
+                        body.appendChild(rocket);
+
+                        // 动画结束后移除火箭
+                        rocket.addEventListener('animationend', () => {
+                            rocket.remove();
+                        });
+                    }
                     progress.style.width = '100%';
                     // 替换背景为动画
                     // animatedBackground.style.display = 'block'; // 显示背景动画的div
