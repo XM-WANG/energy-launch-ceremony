@@ -165,7 +165,7 @@
 
             .header {
                 margin-top: 50px;
-                font-size: 48px; /* 大标题字体大小 */
+                font-size: 36px; /* 大标题字体大小 */
                 text-align: center;
             }
 
@@ -240,18 +240,44 @@
                     transform: translateY(-100vh); /* 向上滑出 */
                 }
             }
+            .center-image {
+                position: absolute;  /* 改为绝对定位 */
+                left: 50%;          /* 水平居中 */
+                top: 55%;          /* 垂直居中 */
+                transform: translate(-50%, -50%); /* 完全居中 */
+                width: 100%;
+                text-align: center;
+                z-index: 1;        /* 确保图片在适当的层级 */
+            }
+
+            .center-image img {
+                max-width: 90%;
+                max-height: 60vh;
+                object-fit: contain;
+            }
+            .big-text {
+                font-size: 1.5em;
+            }
         </style>
     </head>
 <body>
     <div id="animated-background"></div>
-    <div class="header" id="main-title">AI Programming</div>
+    <div class="header" id="main-title">
+        2025 International AI Elite</br>
+        Programming Contest (IAEPC)
+    </div>
     <div class="subheader" id="sub-title">Scan the QR code below to speed up the opening ceremony together!</div>
     <div class="qr-code" id="qr-code">
         <img src="images/qr_code.png" alt="QR Code" style="max-width: 200px;"> <!-- 替换为二维码的实际路径 -->
     </div>
 
+    <div class="center-image" id="center-image" style="display: none;">
+        <img src="images/poster.jpg" alt="Center Image">
+    </div>
+    
+
     <div class="button-container">
-        <button onclick="startAnimation()">Go!</button>
+        <button button id="go-button" onclick="startAnimation()">Go!</button>
     </div>
 
     <div class="progress-container">
@@ -284,7 +310,9 @@
             const mainTitle = document.getElementById('main-title');
             const subTitle = document.getElementById('sub-title');
             const qrCode = document.getElementById('qr-code');
-            const animatedBackground = document.getElementById('animated-background'); // 获取背景动画的div
+            const goButton = document.getElementById('go-button');
+            const centerImage = document.getElementById('center-image');
+            const animatedBackground = document.getElementById('animated-background'); // 获取背景动画的di
 
 
             // 禁用按钮
@@ -295,6 +323,12 @@
             const ACCELERATION_TIME = 8000; // 6秒加速时间
             const MAX_SPEED = 0.3; // 最大速度（每帧增加的百分比）
             let currentPercent = 0;
+
+            qrCode.style.display = 'none';
+            goButton.style.display = 'none';
+            subTitle.style.display = 'none';
+            centerImage.style.display = 'block';
+            
 
             function animate(currentTime) {
                 const elapsedTime = currentTime - startTime;
@@ -345,9 +379,12 @@
                     animatedBackground.style.visibility = 'visible';
                     // document.body.style.backgroundColor = 'black'; // 这里可以替换为动画背景的逻辑
                     // 替换文字
-                    mainTitle.textContent = 'Welcome to AI Programming';
-                    subTitle.textContent = 'Thank you for your support! Hope you have a nice day.';
-                    qrCode.style.display = 'none'; // 隐藏二维码
+                    // mainTitle.textContent = 'Welcome to\n2025 International AI Elite\nProgramming Contest (IAEPC)';
+                    // mainTitle.style.whiteSpace = 'pre-line';  // 添加这行
+                    
+                    mainTitle.innerHTML = '<span class="big-text">Welcome to</span><br>2025 International AI Elite<br>Programming Contest (IAEPC)';
+                    // subTitle.textContent = 'Thank you for your support! Hope you have a nice day.';
+                    // qrCode.style.display = 'none'; // 隐藏二维码
                 }
             }
 
